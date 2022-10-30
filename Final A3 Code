@@ -1,5 +1,5 @@
-color FG = #ffdead; (This is the colour most resemblant of the dress)
-color BG = #bb860b; (This is a Gold Colour)
+color FG = #ffdead; //This is the colour most resemblant of the dress
+color BG = #bb860b; //This is a Gold Colour
 PImage img;
 import processing.sound.*;
 SoundFile file ;
@@ -9,15 +9,15 @@ Table table;
 
 void setup() {
   size(900, 900, P3D);
-  img = loadImage("DRESS.jpg");  (Image to be rasterised)
+  img = loadImage("DRESS.jpg");  //Image to be rasterised
   img.resize(850, 850);
-  file = new SoundFile(this, "Marilyn Happy Birthday.mp3");  (Audio that will play in background)
+  file = new SoundFile(this, "Marilyn Happy Birthday.mp3");  //Audio that will play in background
   file.loop();
-  table= loadTable("kimdata.csv", "header");  (Table Data of most followed Instagram accounts)
+  table= loadTable("kimdata.csv", "header");  //Table Data of most followed Instagram accounts
   
   table.addColumn("2", Table.INT);
   table.addRow();
-  table.setInt (9, 2, 323); (This is the cell with the value of Kim Kardashians Instagram followers in millions)
+  table.setInt (9, 2, 323); //This is the cell with the value of Kim Kardashians Instagram followers in millions
  println(table.getInt(9, 2)); 
 
 }
@@ -28,23 +28,23 @@ void draw() {
 
   stroke(255, 50);
 
-  float tiles= table.getInt(9, 2); (This uses the value of Kim Kardashians Instagram followers (millions) as the number of tiles)
-  float ratio = float(height)/float(width); (This sets the ratio for the tiles)
-  float tileX = map(mouseX, 0, width, 20, table.getInt(9, 2)); (This sets the position for the tiles on the X-axis and allows them to increase with mouse movement)
-  float tileY = ratio * tileX; (This sets the position for the tiles on the Y-axis)
-  float tileSize = width / tileX ; (This sets the size for the tiles)
+  float tiles= table.getInt(9, 2); //This uses the value of Kim Kardashians Instagram followers (millions) as the number of tiles
+  float ratio = float(height)/float(width); //This sets the ratio for the tiles
+  float tileX = map(mouseX, 0, width, 20, table.getInt(9, 2)); //This sets the position for the tiles on the X-axis and allows them to increase with mouse movement
+  float tileY = ratio * tileX; //This sets the position for the tiles on the Y-axis
+  float tileSize = width / tileX ; //This sets the size for the tiles
   
    for (int y = 0; y < img.height; y += tileSize) { 
-    for (int x = 0; x < img.width; x += tileSize) { (This for loop allows the next process to be applied to all the specified values)
+    for (int x = 0; x < img.width; x += tileSize) { //This for loop allows the next process to be applied to all the specified values
     color c = img.get(x, y); 
-    float b = map(brightness(c), 0, 255, 1, 0);  (The colour pixels and brightness levels of each grid point are collected)
+    float b = map(brightness(c), 0, 255, 1, 0);  //The colour pixels and brightness levels of each grid point are collected
   
    pushMatrix();
 
    translate(x, y);
-       rotateY(radians(frameCount));  (The Tiles are rotated around the Y-axis)
+       rotateY(radians(frameCount));  //The Tiles are rotated around the Y-axis
 
-      rect(0, 0, b * tileSize, b * tileSize);  (Rectangle tiles are positioned in the places that match the brightness level of 'b', creating the rasterised effect)
+      rect(0, 0, b * tileSize, b * tileSize);  //Rectangle tiles are positioned in the places that match the brightness level of 'b', creating the rasterised effect
 
      
   popMatrix();
